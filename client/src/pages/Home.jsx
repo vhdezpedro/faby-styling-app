@@ -7,7 +7,9 @@ function Home() {
     <main>
       {/* Hero  */}
       <section>
-        <div className="relative mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8">
+        <div className="absolute top-[-30%] left-[-10%] w-[70%] h-[70%] rounded-full bg-linear-to-br from-fuchsia-500/20 to-rose-500/0 blur-3xl" />
+        <div className="absolute bottom-[-30%] right-[-10%] w-[70%] h-[70%] rounded-full bg-linear-to-tl from-violet-500/20 to-indigo-500/0 blur-3xl" />
+        <div className="relative mx-auto max-w-7xl px-6 py-18 sm:py-32 lg:flex lg:items-center lg:gap-x-10 lg:px-8">
           <div className="mx-auto max-w-2xl lg:mx-0 lg:flex-auto">
             {/* Badge con efecto Glassmorphism (backdrop-blur) */}
             <div className="flex border border-fuchsia-500/20 bg-white/5 backdrop-blur-md px-3 py-1 text-sm leading-6 text-fuchsia-600 rounded-full w-fit mb-6">
