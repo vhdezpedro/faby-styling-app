@@ -10,24 +10,24 @@ function Booking() {
   const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(today));
   const [dayOfWeek, setDayOfWeek] = useState(getDay(today));
 
+  const appointments = JSON.parse(localStorage.getItem("appointments")) || [];
+
   const [isOpen, setIsOpen] = useState(false);
-
-  function openModal() {
-    setIsOpen(true);
-  }
-
-  function onClose() {
-    setIsOpen(false);
-  }
 
   function prevMonth() {
     setCurrentMonth((prev) => (prev === 0 ? 11 : prev - 1));
     setCurrentYear((prev) => (currentMonth === 0 ? prev - 1 : prev));
   }
-
   function nextMonth() {
     setCurrentMonth((prev) => (prev === 11 ? 0 : prev + 1));
     setCurrentYear((prev) => (currentMonth === 11 ? prev + 1 : prev));
+  }
+
+  function openModal() {
+    setIsOpen(true);
+  }
+  function onClose() {
+    setIsOpen(false);
   }
 
   useEffect(() => {
@@ -41,13 +41,19 @@ function Booking() {
       <MonthlyView
         currentMonth={currentMonth}
         currentYear={currentYear}
-        daysInMonth={daysInMonth}
-        dayOfWeek={dayOfWeek}
         prevMonth={prevMonth}
         nextMonth={nextMonth}
+        daysInMonth={daysInMonth}
+        dayOfWeek={dayOfWeek}
         openModal={openModal}
+        appointments={appointments}
       />
-      <BookingModal isOpen={isOpen} onClose={onClose} />
+      {/* <Route path="/dayly" element={<DailyView />} /> */}
+      <BookingModal
+        isOpen={isOpen}
+        onClose={onClose}
+        appointments={appointments}
+      />
     </>
   );
 }

@@ -1,13 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
 import { daysOfWeek, monthsOfYear } from "../utils/dateArrays";
+import { useNavigate } from "react-router-dom";
+import { BookingContext } from "../contexts/BookingContext";
+import DaySquare from "../components/DaySquare";
 
 function MonthlyView({
   currentMonth,
   currentYear,
-  dayOfWeek,
-  daysInMonth,
   prevMonth,
   nextMonth,
+  dayOfWeek,
+  daysInMonth,
   openModal,
 }) {
   return (
@@ -45,14 +48,7 @@ function MonthlyView({
           );
         })}
         {Array.from({ length: daysInMonth }, (_, day) => {
-          return (
-            <div
-              key={`day-square-${day}`}
-              className="aspect-2/3 bg-gray-900/60 rounded-sm m-0.5"
-            >
-              <span> {day + 1} </span>
-            </div>
-          );
+          return <DaySquare key={`day-square-${day}`} day={day} />;
         })}
       </div>
     </main>

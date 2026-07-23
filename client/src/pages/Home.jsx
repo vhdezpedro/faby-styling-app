@@ -31,7 +31,6 @@ function Home() {
             <div className="mt-6 flex justify-end pr-20">
               <Link
                 to="/#catalog"
-                href="#servicios"
                 className="text-sm font-semibold leading-6 text-gray-950 dark:text-white hover:text-fuchsia-600 transition-colors"
               >
                 Ver Catálogo <span aria-hidden="true">→</span>

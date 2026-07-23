@@ -1,9 +1,22 @@
-import React from "react";
-// Importamos solo lo que necesitamos de date-fns para optimizar el bundle (tree-shaking)
-import { format } from "date-fns";
+import React, { useContext } from "react";
+import { areIntervalsOverlapping, format, isToday } from "date-fns";
 import { es } from "date-fns/locale";
+import { useForm } from "react-hook-form";
 
-function BookingModal({ isOpen, onClose }) {
+function BookingModal({ isOpen, onClose, appointments }) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
+
+  function onSubmit(data) {
+    const newAppointment = data;
+    appointments.push(newAppointment);
+
+    localStorage.setItem("appointments", JSON.stringify(appointments));
+  }
+
   if (!isOpen) return null;
 
   return (
@@ -24,13 +37,14 @@ function BookingModal({ isOpen, onClose }) {
           </p>
         </div>
 
-        <form className="p-6 space-y-2">
+        <form className="p-6 space-y-2" onSubmit={handleSubmit(onSubmit)}>
           <div>
             <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
               Nombre Completo
             </label>
             <input
               type="text"
+              {...register("name", { required: "Es requerido" })}
               placeholder="Ej. Valeria García"
               className="w-full rounded-lg border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 px-4 py-1 text-gray-900 dark:text-white focus:ring focus:ring-fuchsia-500 outline-none transition"
             />
@@ -44,7 +58,18 @@ function BookingModal({ isOpen, onClose }) {
               </label>
               <input
                 type="tel"
-                placeholder="55 1234 5678"
+                {...register("phone", {
+                  required: "Es requerido",
+                  minLength: {
+                    value: 10,
+                    message: "Ingresa un número de 10 dígitos",
+                  },
+                  maxLength: {
+                    value: 10,
+                    message: "Ingresa un número de 10 dígitos",
+                  },
+                })}
+                placeholder="5512345678"
                 className="w-full rounded-lg border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 px-4 py-1 text-gray-900 dark:text-white focus:ring-2 focus:ring-fuchsia-500 outline-none"
               />
             </div>
@@ -54,7 +79,10 @@ function BookingModal({ isOpen, onClose }) {
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
                 Servicio
               </label>
-              <select className="w-full rounded-lg border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 px-4 py-1 text-gray-900 dark:text-white focus:ring-2 focus:ring-fuchsia-500 outline-none">
+              <select
+                {...register("service")}
+                className="w-full rounded-lg border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 px-4 py-1 text-gray-900 dark:text-white focus:ring-2 focus:ring-fuchsia-500 outline-none"
+              >
                 <option>Corte y Estilo</option>
                 <option>Colorimetría</option>
                 <option>Tratamiento Capilar</option>
@@ -71,6 +99,9 @@ function BookingModal({ isOpen, onClose }) {
               </label>
               <input
                 type="date"
+                {...register("date", {
+                  required: "Es requerido",
+                })}
                 className="w-full rounded-lg border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 px-4 py-1 text-gray-900 dark:text-white focus:ring-2 focus:ring-fuchsia-500 outline-none"
               />
             </div>
@@ -82,6 +113,7 @@ function BookingModal({ isOpen, onClose }) {
               </label>
               <input
                 type="time"
+                {...register("time", { required: "Es requerido" })}
                 className="w-full rounded-lg border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 px-4 py-1 text-gray-900 dark:text-white focus:ring-2 focus:ring-fuchsia-500 outline-none"
               />
             </div>

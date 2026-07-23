@@ -1,14 +1,15 @@
+import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
+
+//* Styles imported
+import "./styles/globals.css";
 
 //* Pages and Components imported
 import Home from "./pages/Home";
 import Booking from "./pages/Booking";
-
-//* Styles imported
-import "./styles/globals.css";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
-import { useState } from "react";
+import MonthlyView from "./components/MonthlyView";
 
 function App() {
   return (
