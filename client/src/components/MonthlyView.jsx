@@ -12,6 +12,7 @@ function MonthlyView({
   dayOfWeek,
   daysInMonth,
   openModal,
+  appointments,
 }) {
   return (
     <main className="dark:text-white text-gray-950 relative">
@@ -48,7 +49,13 @@ function MonthlyView({
           );
         })}
         {Array.from({ length: daysInMonth }, (_, day) => {
-          return <DaySquare key={`day-square-${day}`} day={day} />;
+          return (
+            <DaySquare
+              key={`day-square-${day}`}
+              day={day}
+              appointnments={appointments}
+            />
+          );
         })}
       </div>
     </main>
