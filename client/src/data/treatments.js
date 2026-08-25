@@ -1,0 +1,58 @@
+export const treatments = [
+  {
+    id: 1,
+    name: "Corte y Estilo",
+    description: "Corte personalizado según tu rostro y estilo, incluye lavado y secado básico.",
+    duration: 45,
+    price: 350,
+  },
+  {
+    id: 2,
+    name: "Colorimetría",
+    description: "Tinte profesional con productos de alta gama, adaptado a tu tono de piel.",
+    duration: 90,
+    price: 800,
+  },
+  {
+    id: 3,
+    name: "Balayage",
+    description: "Técnica de iluminación natural para un efecto degradado y dimensional.",
+    duration: 120,
+    price: 1200,
+  },
+  {
+    id: 4,
+    name: "Tratamiento Capilar",
+    description: "Hidratación profunda, reconstrucción y protección para tu cabello.",
+    duration: 60,
+    price: 500,
+  },
+  {
+    id: 5,
+    name: "Alisado Profundo",
+    description: "Alisado permanente con keratina para un cabello liso y sedoso por meses.",
+    duration: 150,
+    price: 1500,
+  },
+  {
+    id: 6,
+    name: "Peinado Especial",
+    description: "Peinado para eventos especiales: bodas, quinceañeras, graduaciones.",
+    duration: 60,
+    price: 600,
+  },
+  {
+    id: 7,
+    name: "Manicure & Pedicure",
+    description: "Cuidado completo de uñas con esmalte semipermanente o regular.",
+    duration: 75,
+    price: 450,
+  },
+  {
+    id: 8,
+    name: "Lifting de Pestañas",
+    description: "Elevación y rizado de pestañas naturales con efecto duradero.",
+    duration: 60,
+    price: 550,
+  },
+];
