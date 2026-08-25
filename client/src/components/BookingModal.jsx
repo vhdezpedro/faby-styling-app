@@ -15,6 +15,7 @@ function BookingModal({ isOpen, onClose, appointments }) {
     appointments.push(newAppointment);
 
     localStorage.setItem("appointments", JSON.stringify(appointments));
+    onClose();
   }
 
   if (!isOpen) return null;

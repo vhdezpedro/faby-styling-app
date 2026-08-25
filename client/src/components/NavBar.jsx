@@ -10,7 +10,7 @@ function NavBar() {
           <Link to="/">Inicio</Link>
           <Link to="/#gallery">Galería</Link>
           <Link
-            to="/booking"
+            to="/register"
             className="rounded-3xl bg-linear-to-r from-fuchsia-600 to-rose-600 px-2.5 py-1.5 font-semibold text-white shadow-lg transition duration-750 ease-in-out hover:scale-105 cursor-pointer"
           >
             Reserva tu cita
