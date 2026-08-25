@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { getDaysInMonth, getDay } from "date-fns";
 import MonthlyView from "../components/MonthlyView";
 import BookingModal from "../components/BookingModal";
@@ -7,20 +7,32 @@ function Booking() {
   const today = new Date();
   const [currentMonth, setCurrentMonth] = useState(today.getMonth());
   const [currentYear, setCurrentYear] = useState(today.getFullYear());
-  const [daysInMonth, setDaysInMonth] = useState(getDaysInMonth(today));
-  const [dayOfWeek, setDayOfWeek] = useState(getDay(today));
+
+  const currentDate = new Date(currentYear, currentMonth, 1);
+  const daysInMonth = getDaysInMonth(currentDate);
+  const dayOfWeek = getDay(currentDate);
 
   const appointments = JSON.parse(localStorage.getItem("appointments")) || [];
 
   const [isOpen, setIsOpen] = useState(false);
 
   function prevMonth() {
-    setCurrentMonth((prev) => (prev === 0 ? 11 : prev - 1));
-    setCurrentYear((prev) => (currentMonth === 0 ? prev - 1 : prev));
+    setCurrentMonth((prev) => {
+      if (prev === 0) {
+        setCurrentYear((y) => y - 1);
+        return 11;
+      }
+      return prev - 1;
+    });
   }
   function nextMonth() {
-    setCurrentMonth((prev) => (prev === 11 ? 0 : prev + 1));
-    setCurrentYear((prev) => (currentMonth === 11 ? prev + 1 : prev));
+    setCurrentMonth((prev) => {
+      if (prev === 11) {
+        setCurrentYear((y) => y + 1);
+        return 0;
+      }
+      return prev + 1;
+    });
   }
 
   function openModal() {
@@ -29,12 +41,6 @@ function Booking() {
   function onClose() {
     setIsOpen(false);
   }
-
-  useEffect(() => {
-    const currentDate = new Date(currentYear, currentMonth, 1);
-    setDaysInMonth(getDaysInMonth(currentDate));
-    setDayOfWeek(getDay(currentDate));
-  }, [currentMonth]);
 
   return (
     <>
@@ -48,7 +54,6 @@ function Booking() {
         openModal={openModal}
         appointments={appointments}
       />
-      {/* <Route path="/dayly" element={<DailyView />} /> */}
       <BookingModal
         isOpen={isOpen}
         onClose={onClose}

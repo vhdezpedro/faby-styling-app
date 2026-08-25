@@ -1,7 +1,4 @@
-import React, { useContext } from "react";
 import { daysOfWeek, monthsOfYear } from "../utils/dateArrays";
-import { useNavigate } from "react-router-dom";
-import { BookingContext } from "../contexts/BookingContext";
 import DaySquare from "../components/DaySquare";
 
 function MonthlyView({
@@ -53,7 +50,7 @@ function MonthlyView({
             <DaySquare
               key={`day-square-${day}`}
               day={day}
-              appointnments={appointments}
+              appointments={appointments}
             />
           );
         })}

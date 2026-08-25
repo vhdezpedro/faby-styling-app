@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
-import { BookingContext } from "../contexts/BookingContext";
+import { BookingContext } from "../contexts/BookingContext.jsx";
 import TermsModal from "../components/TermsModal";
 
 function Register() {

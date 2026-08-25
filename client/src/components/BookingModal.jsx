@@ -1,20 +1,11 @@
-import React, { useContext } from "react";
-import { areIntervalsOverlapping, format, isToday } from "date-fns";
-import { es } from "date-fns/locale";
 import { useForm } from "react-hook-form";
 
 function BookingModal({ isOpen, onClose, appointments }) {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const { register, handleSubmit } = useForm();
 
   function onSubmit(data) {
-    const newAppointment = data;
-    appointments.push(newAppointment);
-
-    localStorage.setItem("appointments", JSON.stringify(appointments));
+    const updatedAppointments = [...appointments, data];
+    localStorage.setItem("appointments", JSON.stringify(updatedAppointments));
     onClose();
   }
 

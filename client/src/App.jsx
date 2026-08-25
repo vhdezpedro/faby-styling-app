@@ -10,6 +10,8 @@ import BookingProvider from "./contexts/BookingContext";
 import Home from "./pages/Home";
 import Booking from "./pages/Booking";
 import Register from "./pages/Register";
+import Treatments from "./pages/Treatments";
+import Schedule from "./pages/Schedule";
 import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
 
@@ -21,6 +23,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/register" element={<Register />} />
+          <Route path="/treatments" element={<Treatments />} />
+          <Route path="/schedule" element={<Schedule />} />
           <Route path="/booking" element={<Booking />} />
         </Routes>
         <Footer />
